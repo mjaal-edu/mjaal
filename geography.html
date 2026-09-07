@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الجغرافيا والعالم | مجال</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: #06110f;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       الصفحة
+    ========================= */
+
+    .page {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(45, 145, 110, 0.18),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(20, 90, 80, 0.18),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #06110f,
+          #081b18,
+          #071411
+        );
+    }
+
+    /* =========================
+       شبكة الخلفية
+    ========================= */
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        );
+
+      background-size: 60px 60px;
+
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 80%,
+        transparent
+      );
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       الكرة الأرضية
+    ========================= */
+
+    .earth {
+      position: absolute;
+
+      width: 720px;
+      height: 720px;
+
+      left: 50%;
+      top: 58%;
+
+      transform: translate(-50%, -50%);
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          rgba(100, 230, 180, 0.25),
+          transparent 8%
+        ),
+        radial-gradient(
+          circle at 30% 35%,
+          #164d43 0%,
+          #0c302a 35%,
+          #071d19 68%,
+          #030c0a 100%
+        );
+
+      box-shadow:
+        0 0 50px rgba(53, 194, 143, 0.15),
+        0 0 120px rgba(38, 160, 120, 0.12),
+        inset -60px -40px 100px rgba(0,0,0,0.65),
+        inset 30px 20px 70px rgba(90,220,180,0.08);
+
+      opacity: 0.42;
+
+      animation: earthFloat 8s ease-in-out infinite;
+
+      pointer-events: none;
+    }
+
+    /* خطوط الكرة */
+
+    .earth::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      border-radius: 50%;
+
+      background:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px,
+          transparent 45px,
+          rgba(120, 220, 190, 0.09) 46px,
+          transparent 47px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px,
+          transparent 65px,
+          rgba(120, 220, 190, 0.07) 66px,
+          transparent 67px
+        );
+
+      animation: globeSpin 18s linear infinite;
+    }
+
+    /* هالة الأرض */
+
+    .earth::after {
+      content: "";
+
+      position: absolute;
+      inset: -30px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(91, 221, 170, 0.08);
+
+      box-shadow:
+        0 0 40px rgba(73, 201, 157, 0.08),
+        0 0 90px rgba(73, 201, 157, 0.05);
+    }
+
+    @keyframes earthFloat {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        transform: translate(-50%, -51%) scale(1.015);
+      }
+    }
+
+    @keyframes globeSpin {
+      from {
+        transform: rotate(0deg) scale(1.08);
+      }
+
+      to {
+        transform: rotate(360deg) scale(1.08);
+      }
+    }
+
+    /* =========================
+       زر العودة
+    ========================= */
+
+    .back {
+      position: fixed;
+
+      top: 25px;
+      left: 25px;
+
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      text-decoration: none;
+
+      color: #67dcae;
+
+      background: rgba(255,255,255,0.055);
+
+      border: 1px solid rgba(103,220,174,0.25);
+
+      font-size: 24px;
+
+      backdrop-filter: blur(10px);
+
+      transition:
+        0.3s ease;
+
+      z-index: 20;
+    }
+
+    .back:hover {
+      transform: scale(1.08);
+
+      background: rgba(103,220,174,0.12);
+
+      border-color: rgba(103,220,174,0.55);
+
+      box-shadow:
+        0 0 20px rgba(70,200,150,0.2);
+    }
+
+    /* Tooltip */
+
+   .back::after {
+      content: "العودة إلى المجالات"; 
+
+      position: absolute;
+
+      left: 60px;
+      top: 50%;
+
+      transform:
+        translateY(-50%)
+        translateX(-8px);
+
+      opacity: 0;
+
+      white-space: nowrap;
+
+      padding: 8px 13px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+
+      color: #dffff1;
+
+      background: rgba(7,20,17,0.92);
+
+      border: 1px solid rgba(103,220,174,0.2);
+
+      pointer-events: none;
+
+      transition: 0.25s ease;
+    }
+
+    .back:hover::after {
+      opacity: 1;
+
+      transform:
+        translateY(-50%)
+        translateX(0);
+    }
+
+    /* =========================
+       المحتوى
+    ========================= */
+
+    .container {
+      position: relative;
+
+      width: min(1150px, 92%);
+
+      margin: auto;
+
+      padding:
+        80px 0
+        60px;
+
+      z-index: 5;
+    }
+
+    /* =========================
+       Hero
+    ========================= */
+
+    .hero {
+      text-align: center;
+
+      margin-bottom: 45px;
+    }
+
+    .hero-icon {
+      width: 82px;
+      height: 82px;
+
+      margin: 0 auto 18px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        rgba(74, 199, 154, 0.08);
+
+      border:
+        1px solid rgba(103,220,174,0.2);
+
+      box-shadow:
+        0 0 35px rgba(66,194,147,0.1);
+
+      font-size: 43px;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 5vw, 55px);
+
+      margin-bottom: 15px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #83e3bd
+        );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      max-width: 720px;
+
+      margin: auto;
+
+      color: #a9c3bc;
+
+      font-size: 17px;
+
+      line-height: 1.9;
+    }
+
+    /* =========================
+       بطاقة التعريف
+    ========================= */
+
+    .intro-card {
+      padding: 30px;
+
+      margin-bottom: 55px;
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(12px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .intro-card h2 {
+      margin-bottom: 14px;
+
+      color: #83e3bd;
+
+      font-size: 22px;
+    }
+
+    .intro-card p {
+      color: #b6c9c4;
+
+      line-height: 2;
+
+      font-size: 15px;
+    }
+
+    /* =========================
+       عنوان المستويات
+    ========================= */
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #8fa9a2;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       البطاقات
+    ========================= */
+
+    .levels {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+    .level-card {
+      position: relative;
+
+      padding: 30px 25px;
+
+      min-height: 390px;
+
+      display: flex;
+      flex-direction: column;
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,0.055);
+
+      border:
+        1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(12px);
+
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .level-card:hover {
+      transform: translateY(-8px);
+
+      background:
+        rgba(255,255,255,0.10);
+
+      border-color:
+        rgba(98,214,163,0.55);
+
+      box-shadow:
+        0 0 15px rgba(56,190,135,0.18),
+        0 0 35px rgba(56,190,135,0.14),
+        0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    /* =========================
+       ألوان المستويات
+    ========================= */
+
+    .beginner {
+      --level-color: #5ac597;
+    }
+
+    .intermediate {
+      --level-color: #dbbd58;
+    }
+
+    .advanced {
+      --level-color: #d36363;
+    }
+
+    .level-card h3 {
+      color: var(--level-color);
+
+      font-size: 21px;
+
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+       الدروس
+    ========================= */
+
+    .topics {
+      list-style: none;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 13px;
+
+      margin-bottom: 30px;
+    }
+
+    .topics li {
+      position: relative;
+
+      padding-right: 18px;
+
+      color: #c2d1cd;
+
+      font-size: 14px;
+
+      line-height: 1.7;
+
+      transition: 0.25s ease;
+    }
+
+    .topics li::before {
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+      top: 10px;
+
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background:
+        var(--level-color);
+
+      box-shadow:
+        0 0 8px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 25%
+        );
+    }
+
+    .topics li:hover {
+      color: #ffffff;
+
+      transform: translateX(-4px);
+    }
+
+    /* =========================
+       زر المستوى
+    ========================= */
+
+    .level-button {
+      margin-top: auto;
+
+      display: block;
+
+      padding: 13px;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      border-radius: 12px;
+
+      color: #071510;
+
+      background:
+        var(--level-color);
+
+      font-weight: 700;
+
+      transition:
+        0.3s ease;
+    }
+
+    .level-button:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.12);
+
+  box-shadow:
+    0 0 12px var(--level-color),
+    0 0 25px color-mix(
+      in srgb,
+      var(--level-color),
+      transparent 45%
+    ),
+    0 8px 30px color-mix(
+      in srgb,
+      var(--level-color),
+      transparent 65%
+    );
+}
+    
+
+    /* =========================
+       الملاحظة الأخيرة
+    ========================= */
+
+    .bottom-note {
+      margin-top: 45px;
+
+      padding: 18px;
+
+      text-align: center;
+
+      color: #8fa9a2;
+
+      font-size: 14px;
+    }
+
+    .bottom-note strong {
+      color: #83e3bd;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (max-width: 850px) {
+      .levels {
+        grid-template-columns: 1fr;
+      }
+
+      .level-card {
+        min-height: auto;
+      }
+
+      .earth {
+        width: 560px;
+        height: 560px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        width: 90%;
+
+        padding-top: 90px;
+      }
+
+      .back {
+        left: 15px;
+        top: 15px;
+
+        width: 43px;
+        height: 43px;
+      }
+
+      .hero-icon {
+        width: 70px;
+        height: 70px;
+
+        font-size: 36px;
+      }
+
+      .intro-card {
+        padding: 23px;
+      }
+
+      .level-card {
+        padding: 25px 20px;
+      }
+
+      .earth {
+        width: 430px;
+        height: 430px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- زر العودة -->
+  <a
+    class="back"
+    href="fields.html"
+    
+  >
+    ←
+  </a>
+
+  <div class="page">
+
+    <!-- الكرة الأرضية في الخلفية -->
+    <div class="earth"></div>
+
+    <main class="container">
+
+      <!-- العنوان -->
+      <header class="hero">
+
+        <div class="hero-icon">
+          🌍
+        </div>
+
+        <h1>
+          الجغرافيا والعالم
+        </h1>
+
+        <p>
+          رحلة لاكتشاف كوكب الأرض، من القارات والمحيطات
+          إلى الدول والمناخ والسكان والظواهر الطبيعية.
+        </p>
+
+      </header>
+
+
+      <!-- التعريف -->
+      <section class="intro-card">
+
+        <h2>
+          🧭 ماذا ستكتشف في هذا المجال؟
+        </h2>
+
+        <p>
+          الجغرافيا تساعدنا على فهم كوكب الأرض وكل ما يحدث عليه،
+          من توزيع القارات والمحيطات والدول إلى الجبال والأنهار
+          والمناخ والسكان والموارد الطبيعية.
+          ستبدأ في منصة مجال من الأساسيات، ثم تتدرج تدريجيًا
+          نحو مفاهيم أكثر عمقًا لفهم عالمنا بشكل أفضل.
+        </p>
+
+      </section>
+
+
+      <!-- المستويات -->
+      <section>
+
+        <div class="section-title">
+
+          <h2>
+            اختر مستواك
+          </h2>
+
+          <p>
+            تعلّم بالتدريج، وكل مستوى يفتح الطريق لما بعده
+          </p>
+
+        </div>
+
+
+        <div class="levels">
+
+          <!-- مبتدئ -->
+          <article class="level-card beginner">
+
+            <h3>
+              🌱 المستوى المبتدئ
+            </h3>
+
+            <ul class="topics">
+
+              <li>
+                ما هي الجغرافيا؟
+              </li>
+
+              <li>
+                القارات والمحيطات
+              </li>
+
+              <li>
+                الاتجاهات والخرائط
+              </li>
+
+              <li>
+                الدول والعواصم
+              </li>
+
+              <li>
+                الجبال والأنهار والسهول
+              </li>
+
+            </ul>
+
+            <a
+              href="geography-beginner.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+
+          <!-- متوسط -->
+          <article class="level-card intermediate">
+
+            <h3>
+              🧭 المستوى المتوسط
+            </h3>
+
+            <ul class="topics">
+
+              <li>
+                المناخ والطقس
+              </li>
+
+              <li>
+                الزلازل والبراكين
+              </li>
+
+              <li>
+                السكان والمدن
+              </li>
+
+              <li>
+                التضاريس والموارد الطبيعية
+              </li>
+
+              <li>
+                المناطق الجغرافية في العالم
+              </li>
+
+            </ul>
+
+            <a
+              href="geography-intermediate.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+
+          <!-- متقدم -->
+          <article class="level-card advanced">
+
+            <h3>
+              🌐 المستوى المتقدم
+            </h3>
+
+            <ul class="topics">
+
+              <li>
+                تغير المناخ
+              </li>
+
+              <li>
+                الهجرة والتوزيع السكاني
+              </li>
+
+              <li>
+                الموارد والمياه
+              </li>
+
+              <li>
+                الجغرافيا السياسية والحدود
+              </li>
+
+              <li>
+                التحديات الجغرافية العالمية
+              </li>
+
+            </ul>
+
+            <a
+              href="geography-advanced.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- النهاية -->
+      <div class="bottom-note">
+
+        <strong>
+          اكتشف العالم، وافهم الأرض من حولك.
+        </strong>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</body>
+</html>

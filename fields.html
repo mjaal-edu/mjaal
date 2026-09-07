@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>المجالات | منصة مجال</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(34, 160, 90, 0.08), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(34, 160, 90, 0.07), transparent 25%),
+        #f5fff8;
+      color: #173b2a;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: auto;
+      padding: 55px 0 70px;
+    }
+
+    /* العنوان */
+
+    .header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e2f7ea;
+      color: #188b4b;
+      padding: 7px 18px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 18px;
+      color: #557064;
+    }
+
+    /* إحصائيات صغيرة */
+
+    .info-box {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .info-item {
+      background: white;
+      padding: 10px 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      font-size: 15px;
+      font-weight: 600;
+      color: #466354;
+    }
+
+    /* المجالات */
+
+    .fields {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .field-card {
+      position: relative;
+      overflow: hidden;
+
+      background: white;
+      padding: 38px 25px 32px;
+      border-radius: 22px;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+
+      border: 1px solid rgba(34, 160, 90, 0.08);
+
+      box-shadow: 0 7px 22px rgba(0, 0, 0, 0.07);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    /* لمسة خضراء فوق الكرت */
+
+    .field-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: #22a05a;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .field-card:hover {
+      transform: translateY(-9px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.11);
+      border-color: rgba(34, 160, 90, 0.25);
+    }
+
+    .field-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* الأيقونة */
+
+    .icon-box {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #f9fcfa5d;
+      border-radius: 24px;
+
+      transition: transform 0.3s ease;
+    }
+
+    .field-card:hover .icon-box {
+      transform: scale(1.08) rotate(2deg);
+    }
+
+    .icon {
+      font-size: 52px;
+    }
+
+    .field-card h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .field-card p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #60756a;
+      min-height: 58px;
+    }
+
+    .start-text {
+      display: inline-block;
+      margin-top: 20px;
+      color: #22a05a;
+      font-size: 14px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .field-card:hover .start-text {
+      transform: translateX(-5px);
+    }
+
+    /* أسفل الصفحة */
+
+    .bottom-note {
+      text-align: center;
+      margin-top: 45px;
+      color: #6b7d73;
+      font-size: 15px;
+    }
+
+    .bottom-note strong {
+      color: #22a05a;
+    }
+
+    /* الهاتف */
+
+    @media (max-width: 850px) {
+      .fields {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: auto;
+      }
+
+      .header h1 {
+        font-size: 34px;
+      }
+
+      .container {
+        padding-top: 35px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .header h1 {
+        font-size: 29px;
+      }
+
+      .header p {
+        font-size: 16px;
+      }
+
+      .field-card {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="header">
+
+      <div class="badge">
+        ✨ اختر ما تريد أن تتعلمه
+      </div>
+
+      <h1>📚 المجالات</h1>
+
+      <p>
+        اكتشف مجالًا جديدًا وابدأ رحلة التعلم خطوة بخطوة
+      </p>
+
+    </header>
+
+
+    <div class="info-box">
+
+      <div class="info-item">
+        📚 3 مجالات
+      </div>
+
+      <div class="info-item">
+        🎯 3 مستويات لكل مجال
+      </div>
+
+      <div class="info-item">
+        🚀 تعلّم تدريجي
+      </div>
+
+    </div>
+
+
+    <section class="fields">
+
+      <a href="space.html" class="field-card">
+
+        <div class="icon-box">
+          <div class="icon">🚀</div>
+        </div>
+
+        <h2>الفضاء والفلك</h2>
+
+        <p>
+          اكتشف الكون، النجوم، الكواكب، المجرات،
+          والثقوب السوداء.
+        </p>
+
+        <span class="start-text">
+          ابدأ الاستكشاف ←
+        </span>
+
+      </a>
+
+
+      <a href="geography.html" class="field-card">
+
+        <div class="icon-box">
+          <div class="icon">🌍</div>
+        </div>
+
+        <h2>الجغرافيا والعالم</h2>
+
+        <p>
+          اكتشف القارات والدول، المناخ، السكان،
+          والثقافات حول العالم.
+        </p>
+
+        <span class="start-text">
+          ابدأ الاستكشاف ←
+        </span>
+
+      </a>
+
+
+      <a href="technology.html" class="field-card">
+
+        <div class="icon-box">
+          <div class="icon">💻</div>
+        </div>
+
+        <h2>التكنولوجيا وعلوم الحاسوب</h2>
+
+        <p>
+          تعرّف على الحواسيب، الإنترنت، التطبيقات،
+          البيانات، والتقنيات الحديثة.
+        </p>
+
+        <span class="start-text">
+          ابدأ الاستكشاف ←
+        </span>
+
+      </a>
+
+    </section>
+
+
+    <div class="bottom-note">
+      🌱 <strong>تعلّم اليوم، وطور نفسك غدًا.</strong>
+    </div>
+
+  </main>
+
+</body>
+</html>

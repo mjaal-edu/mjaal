@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>مجال | الدرس قيد التطوير</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Cairo", sans-serif;
+            background: #071510;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 42px;
+            font-weight: 800;
+            color: #39d98a;
+            margin-bottom: 55px;
+            letter-spacing: -1px;
+        }
+
+        .card {
+            background: #0d2119;
+            border: 1px solid #193d2d;
+            border-radius: 24px;
+            padding: 55px 35px;
+        }
+
+        .icon {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+            background: #122d22;
+            border: 1px solid #24563f;
+
+            font-size: 36px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .description {
+            color: #a9beb4;
+            font-size: 17px;
+            line-height: 2;
+            max-width: 500px;
+            margin: 0 auto 35px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            padding: 13px 26px;
+
+            border-radius: 12px;
+            background: #39d98a;
+            color: #06130d;
+
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+
+            transition: background 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #51e59b;
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                padding: 20px;
+            }
+
+            .logo {
+                font-size: 34px;
+                margin-bottom: 40px;
+            }
+
+            .card {
+                padding: 45px 25px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="page">
+
+        <div class="logo">
+            مجال
+        </div>
+
+        <section class="card">
+
+            <div class="icon">
+                🚧
+            </div>
+
+            <h1>
+                الدرس قيد التطوير
+            </h1>
+
+            <p class="description">
+                نعمل حاليًا على إعداد هذا الدرس،
+                وسيكون متاحًا قريبًا.
+            </p>
+
+            <a href="#" class="back-button" onclick="history.back(); return false;">
+                ← العودة إلى المستوى
+            </a>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

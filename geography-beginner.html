@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>الجغرافيا والعالم | المستوى المبتدئ | منصة مجال</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      color: #eefaf4;
+      background: #06100c;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       زر الرجوع
+    ========================= */
+
+    .back {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      z-index: 1000;
+
+      width: 42px;
+      height: 42px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #62d6a3;
+
+      background:
+        rgba(56, 190, 135, 0.08);
+
+      border:
+        1px solid
+        rgba(98, 214, 163, 0.30);
+
+      text-decoration: none;
+
+      font-size: 22px;
+      font-weight: 700;
+
+      transition: 0.3s ease;
+    }
+
+    .back:hover {
+      color: #ffffff;
+
+      background:
+        rgba(56, 190, 135, 0.18);
+
+      border-color:
+        #62d6a3;
+
+      transform:
+        scale(1.08);
+
+      box-shadow:
+        0 0 18px
+        rgba(56, 190, 135, 0.25);
+    }
+
+    .back::after {
+      content: "العودة إلى الجغرافيا والعالم";
+
+      position: absolute;
+
+      top: 50%;
+      left: 52px;
+
+      transform:
+        translateY(-50%)
+        translateX(-5px);
+
+      white-space: nowrap;
+
+      padding: 7px 12px;
+
+      border-radius: 10px;
+
+      background: #0c1812;
+
+      border:
+        1px solid
+        rgba(98, 214, 163, 0.22);
+
+      color: #ffffff;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition: 0.25s ease;
+
+      pointer-events: none;
+    }
+
+    .back:hover::after {
+      opacity: 1;
+      visibility: visible;
+
+      transform:
+        translateY(-50%)
+        translateX(0);
+    }
+
+
+    /* =========================
+       الصفحة
+    ========================= */
+
+    .page {
+      position: relative;
+
+      min-height: 100vh;
+
+      overflow: hidden;
+
+      isolation: isolate;
+
+      background:
+
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(40, 150, 100, 0.14),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(30, 120, 90, 0.10),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(30, 160, 110, 0.07),
+          transparent 35%
+        ),
+
+        #06100c;
+    }
+
+
+    /* =========================
+       نقاط الخلفية المتحركة
+    ========================= */
+
+    .page::before,
+    .page::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -40%;
+
+      pointer-events: none;
+
+      z-index: 0;
+
+      background-repeat: repeat;
+    }
+
+    .page::before {
+
+      background-image:
+
+        radial-gradient(
+          circle,
+          rgba(98, 214, 163, 0.55) 1px,
+          transparent 1.5px
+        ),
+
+        radial-gradient(
+          circle,
+          rgba(180, 255, 220, 0.35) 1px,
+          transparent 1.5px
+        );
+
+      background-size:
+        120px 120px,
+        210px 210px;
+
+      background-position:
+        0 0,
+        70px 90px;
+
+      opacity: 0.22;
+
+      animation:
+        backgroundMove 80s linear infinite;
+    }
+
+    .page::after {
+
+      background-image:
+
+        radial-gradient(
+          circle,
+          rgba(98, 214, 163, 0.30) 1px,
+          transparent 1.5px
+        );
+
+      background-size:
+        260px 260px;
+
+      background-position:
+        100px 50px;
+
+      opacity: 0.18;
+
+      animation:
+        backgroundMoveReverse 110s linear infinite;
+    }
+
+
+    @keyframes backgroundMove {
+
+      from {
+        transform:
+          translate(0, 0);
+      }
+
+      to {
+        transform:
+          translate(160px, 120px);
+      }
+
+    }
+
+
+    @keyframes backgroundMoveReverse {
+
+      from {
+        transform:
+          translate(0, 0);
+      }
+
+      to {
+        transform:
+          translate(-140px, 160px);
+      }
+
+    }
+
+
+    /* =========================
+       المحتوى
+    ========================= */
+
+    .container {
+      position: relative;
+
+      z-index: 2;
+
+      width: 92%;
+      max-width: 1050px;
+
+      margin: auto;
+
+      padding:
+        45px 0 70px;
+    }
+
+
+    /* =========================
+       الهيدر
+    ========================= */
+
+    .hero {
+      text-align: center;
+
+      padding:
+        35px 20px 40px;
+    }
+
+
+    .level-badge {
+
+      display: inline-block;
+
+      padding:
+        7px 15px;
+
+      margin-bottom: 18px;
+
+      border-radius: 20px;
+
+      color: #62d6a3;
+
+      background:
+        rgba(56, 190, 135, 0.08);
+
+      border:
+        1px solid
+        rgba(98, 214, 163, 0.22);
+
+      font-size: 13px;
+
+      font-weight: 700;
+    }
+
+
+    .hero-icon {
+
+      width: 95px;
+      height: 95px;
+
+      margin:
+        0 auto 20px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 28px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid
+        rgba(98, 214, 163, 0.16);
+
+      box-shadow:
+        0 0 35px
+        rgba(56, 190, 135, 0.12);
+    }
+
+
+    .hero-icon span {
+      font-size: 55px;
+
+      filter:
+        drop-shadow(
+          0 0 10px
+          rgba(98, 214, 163, 0.35)
+        );
+    }
+
+
+    .hero h1 {
+
+      font-size: 42px;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #62d6a3
+        );
+
+     background-clip: text;
+     -webkit-background-clip: text;
+     -webkit-text-fill-color: transparent;
+    }
+
+
+    .hero p {
+
+      color: #93ada1;
+
+      font-size: 16px;
+
+      line-height: 2;
+    }
+
+
+    /* =========================
+       معلومات المستوى
+    ========================= */
+
+    .info-card {
+
+      margin-bottom: 45px;
+
+      padding: 25px 28px;
+
+      border-radius: 20px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      backdrop-filter:
+        blur(12px);
+
+      box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.22);
+    }
+
+
+    .info-card h2 {
+
+      color: #62d6a3;
+
+      font-size: 20px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .info-card p {
+
+      color: #a7bbb1;
+
+      font-size: 14px;
+
+      line-height: 2;
+    }
+
+
+    /* =========================
+       عنوان الدروس
+    ========================= */
+
+    .section-title {
+
+      text-align: center;
+
+      margin-bottom: 28px;
+    }
+
+
+    .section-title h2 {
+
+      font-size: 28px;
+
+      margin-bottom: 6px;
+    }
+
+
+    .section-title p {
+
+      color: #788f84;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       قائمة الدروس
+    ========================= */
+
+    .lessons {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+
+    /* =========================
+       بطاقة الدرس
+    ========================= */
+
+    .lesson-card {
+
+      position: relative;
+
+      min-height: 190px;
+
+      padding: 24px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      border-radius: 20px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      backdrop-filter:
+        blur(12px);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+
+    .lesson-card:hover {
+
+      transform:
+        translateY(-6px);
+
+      background:
+        rgba(255,255,255,0.075);
+
+      border-color:
+        rgba(98, 214, 163, 0.42);
+
+      box-shadow:
+
+        0 0 15px
+        rgba(56,190,135,0.13),
+
+        0 0 30px
+        rgba(56,190,135,0.08),
+
+        0 15px 35px
+        rgba(0,0,0,0.25);
+    }
+
+
+    /* خط جانبي */
+
+    .lesson-card::before {
+
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+
+      top: 0;
+
+      width: 3px;
+
+      height: 100%;
+
+      background:
+        #62d6a3;
+
+      opacity: 0.45;
+
+      transition:
+        0.3s ease;
+    }
+
+
+    .lesson-card:hover::before {
+
+      opacity: 1;
+
+      box-shadow:
+        0 0 12px
+        #62d6a3;
+    }
+
+
+    /* =========================
+       رقم الدرس
+    ========================= */
+
+    .lesson-number {
+
+      color: #637a70;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+
+    /* =========================
+       أيقونة الدرس
+    ========================= */
+
+    .lesson-icon {
+
+      width: 43px;
+      height: 43px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 13px;
+
+      background:
+        rgba(98,214,163,0.07);
+
+      border:
+        1px solid
+        rgba(98,214,163,0.14);
+
+      font-size: 21px;
+
+      margin-bottom: 15px;
+
+      transition:
+        0.3s ease;
+    }
+
+
+    .lesson-card:hover .lesson-icon {
+
+      transform:
+        scale(1.05);
+
+      box-shadow:
+        0 0 15px
+        rgba(98,214,163,0.18);
+    }
+
+
+    /* =========================
+       عنوان الدرس
+    ========================= */
+
+    .lesson-card h3 {
+
+      color: #e4f4ec;
+
+      font-size: 18px;
+
+      margin-bottom: 7px;
+    }
+
+
+    .lesson-card p {
+
+      color: #91a89d;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+      margin-bottom: 18px;
+    }
+
+
+    /* =========================
+       زر الدرس
+    ========================= */
+
+    .lesson-button {
+
+      margin-top: auto;
+
+      display: block;
+
+      padding: 9px 12px;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      border-radius: 10px;
+
+      color: #bfeede;
+
+      background:
+        rgba(98,214,163,0.055);
+
+      border:
+        1px solid
+        rgba(98,214,163,0.25);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      transition:
+        0.3s ease;
+    }
+
+
+    .lesson-button:hover {
+
+      color: #ffffff;
+
+      background:
+        #38be87;
+
+      border-color:
+        #38be87;
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+
+        0 0 10px
+        rgba(56,190,135,0.60),
+
+        0 0 25px
+        rgba(56,190,135,0.30),
+
+        0 8px 25px
+        rgba(56,190,135,0.20);
+    }
+
+
+    /* =========================
+       الاختبار
+    ========================= */
+
+    .test-card {
+
+      margin-top: 25px;
+
+      padding: 28px;
+
+      text-align: center;
+
+      border-radius: 20px;
+
+      background:
+        rgba(56,190,135,0.055);
+
+      border:
+        1px solid
+        rgba(98,214,163,0.20);
+
+      backdrop-filter:
+        blur(12px);
+    }
+
+
+    .test-card h2 {
+
+      color: #62d6a3;
+
+      font-size: 21px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .test-card p {
+
+      color: #91a89d;
+
+      font-size: 13px;
+
+      margin-bottom: 18px;
+    }
+
+
+    .test-button {
+
+      display: inline-block;
+
+      padding:
+        11px 25px;
+
+      border-radius: 11px;
+
+      color: #eafff5;
+
+      background:
+        rgba(98,214,163,0.08);
+
+      border:
+        1px solid
+        rgba(98,214,163,0.30);
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      transition:
+        0.3s ease;
+    }
+
+
+    .test-button:hover {
+
+      color: #ffffff;
+
+      background:
+        #38be87;
+
+      border-color:
+        #38be87;
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+
+        0 0 12px
+        rgba(56,190,135,0.55),
+
+        0 0 28px
+        rgba(56,190,135,0.22);
+    }
+
+
+    /* =========================
+       أسفل الصفحة
+    ========================= */
+
+    .bottom-note {
+
+      text-align: center;
+
+      margin-top: 40px;
+
+      color: #637a70;
+
+      font-size: 13px;
+    }
+
+
+    .bottom-note strong {
+
+      color: #62d6a3;
+    }
+
+
+    /* =========================
+       الهاتف
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .lessons {
+
+        grid-template-columns:
+          1fr;
+
+      }
+
+      .hero h1 {
+
+        font-size: 33px;
+
+      }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+      .container {
+
+        width: 94%;
+
+        padding-top: 25px;
+
+      }
+
+      .hero {
+
+        padding-top: 25px;
+
+      }
+
+      .hero h1 {
+
+        font-size: 28px;
+
+      }
+
+      .hero p {
+
+        font-size: 14px;
+
+      }
+
+      .info-card {
+
+        padding: 22px;
+
+      }
+
+      .back {
+
+        top: 18px;
+
+        left: 18px;
+
+      }
+
+    }
+
+
+    /* =========================
+       نظام القفل فقط
+    ========================= */
+
+    .lesson-card.locked,
+    .test-card.locked {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       زر الرجوع
+  ========================= -->
+
+  <a
+    class="back"
+    href="geography.html"
+
+  >
+    ←
+  </a>
+
+
+  <div class="page">
+
+
+    <!-- =========================
+         المحتوى
+    ========================= -->
+
+    <main class="container">
+
+
+      <!-- =========================
+           الهيدر
+      ========================= -->
+
+      <header class="hero">
+
+        <div class="level-badge">
+          المستوى 01 • مبتدئ
+        </div>
+
+
+        <div class="hero-icon">
+
+          <span>🌍</span>
+
+        </div>
+
+
+        <h1>
+          الجغرافيا والعالم
+        </h1>
+
+
+        <p>
+          ابدأ رحلتك في فهم كوكب الأرض والعالم من حولك.
+        </p>
+
+      </header>
+
+
+      <!-- =========================
+           معلومات المستوى
+      ========================= -->
+
+      <section class="info-card">
+
+        <h2>
+          ماذا ستتعلم في هذا المستوى؟
+        </h2>
+
+
+        <p>
+          في هذا المستوى ستتعرف على أساسيات الجغرافيا،
+          والقارات والمحيطات، وكيفية قراءة الخرائط وتحديد
+          الاتجاهات، بالإضافة إلى الدول وعواصمها وأهم
+          أشكال التضاريس مثل الجبال والأنهار والسهول.
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           الدروس
+      ========================= -->
+
+      <section>
+
+
+        <div class="section-title">
+
+          <h2>
+            دروس المستوى
+          </h2>
+
+
+          <p>
+            5 دروس قصيرة لبناء أساس قوي في الجغرافيا
+          </p>
+
+        </div>
+
+
+        <div class="lessons">
+
+
+          <!-- الدرس 01 -->
+
+          <article class="lesson-card" data-lesson="1">
+
+            <div class="lesson-number">
+              الدرس 01
+            </div>
+
+
+            <div class="lesson-icon">
+              🌍
+            </div>
+
+
+            <h3>
+              ما هي الجغرافيا؟
+            </h3>
+
+
+            <p>
+              تعرف على مفهوم الجغرافيا وما الذي تدرسه
+              وكيف تساعدنا على فهم العالم.
+            </p>
+
+
+            <a
+              href="under-development.html"
+              class="lesson-button"
+            >
+              ابدأ الدرس
+            </a>
+
+          </article>
+
+
+          <!-- الدرس 02 -->
+
+          <article class="lesson-card" data-lesson="2">
+
+            <div class="lesson-number">
+              الدرس 02
+            </div>
+
+
+            <div class="lesson-icon">
+              🌊
+            </div>
+
+
+            <h3>
+              القارات والمحيطات
+            </h3>
+
+
+            <p>
+              اكتشف قارات العالم ومحيطاته وتعرف على
+              توزيع اليابسة والمياه على كوكب الأرض.
+            </p>
+
+
+            <a
+              href="geography-beginner-lesson-2.html"
+              class="lesson-button"
+            >
+              ابدأ الدرس
+            </a>
+
+          </article>
+
+
+          <!-- الدرس 03 -->
+
+          <article class="lesson-card" data-lesson="3">
+
+            <div class="lesson-number">
+              الدرس 03
+            </div>
+
+
+            <div class="lesson-icon">
+              🧭
+            </div>
+
+
+            <h3>
+              الاتجاهات والخرائط
+            </h3>
+
+
+            <p>
+              تعلم الاتجاهات الأساسية وكيفية فهم الخرائط
+              وتحديد المواقع عليها.
+            </p>
+
+
+            <a
+              href="geography-beginner-lesson-3.html"
+              class="lesson-button"
+            >
+              ابدأ الدرس
+            </a>
+
+          </article>
+
+
+          <!-- الدرس 04 -->
+
+          <article class="lesson-card" data-lesson="4">
+
+            <div class="lesson-number">
+              الدرس 04
+            </div>
+
+
+            <div class="lesson-icon">
+              🏙️
+            </div>
+
+
+            <h3>
+              الدول والعواصم
+            </h3>
+
+
+            <p>
+              تعرف على مفهوم الدولة والعاصمة وابدأ
+              في اكتشاف دول وعواصم العالم.
+            </p>
+
+
+            <a
+              href="geography-beginner-lesson-4.html"
+              class="lesson-button"
+            >
+              ابدأ الدرس
+            </a>
+
+          </article>
+
+
+          <!-- الدرس 05 -->
+
+          <article class="lesson-card" data-lesson="5">
+
+            <div class="lesson-number">
+              الدرس 05
+            </div>
+
+
+            <div class="lesson-icon">
+              🏔️
+            </div>
+
+
+            <h3>
+              الجبال والأنهار والسهول
+            </h3>
+
+
+            <p>
+              تعرف على أهم أشكال سطح الأرض والفرق بين
+              الجبال والأنهار والسهول.
+            </p>
+
+
+            <a
+              href="geography-beginner-lesson-5.html"
+              class="lesson-button"
+            >
+              ابدأ الدرس
+            </a>
+
+          </article>
+
+
+        </div>
+
+
+      </section>
+
+
+      <!-- =========================
+           الاختبار
+      ========================= -->
+
+      <section class="test-card">
+
+        <h2>
+          📝 اختبار المستوى
+        </h2>
+
+
+        <p>
+          بعد إكمال الدروس الخمسة، اختبر معلوماتك
+          وانتقل إلى الخطوة التالية.
+        </p>
+
+
+        <a
+          href="geography-beginner-test.html"
+          class="test-button"
+        >
+          ابدأ الاختبار
+        </a>
+
+      </section>
+
+
+      <!-- =========================
+           النهاية
+      ========================= -->
+
+      <div class="bottom-note">
+
+        <strong>
+          خطوة بخطوة... العالم يصبح أوضح.
+        </strong>
+
+      </div>
+
+
+    </main>
+
+
+  </div>
+
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const lessons = document.querySelectorAll(".lesson-card");
+      const testCard = document.querySelector(".test-card");
+      const testButton = document.querySelector(".test-button");
+
+
+      function isCompleted(number) {
+        return localStorage.getItem(
+          "geography_beginner_lesson_" + number
+        ) === "completed";
+      }
+
+
+      function updateLocks() {
+
+        let previousCompleted = true;
+
+
+        lessons.forEach(function (lesson) {
+
+          const number =
+            Number(lesson.dataset.lesson);
+
+          const button =
+            lesson.querySelector(".lesson-button");
+
+
+          if (isCompleted(number)) {
+
+            lesson.classList.remove("locked");
+
+            button.textContent = "إعادة الدرس";
+
+            button.href =
+              "geography-beginner-lesson-" +
+              number +
+              ".html";
+
+            previousCompleted = true;
+
+          }
+
+          else if (previousCompleted) {
+
+  lesson.classList.remove("locked");
+
+  button.textContent = "ابدأ الدرس";
+
+  if (number === 1) {
+    button.href = "under-development.html";
+  } else {
+    button.href =
+      "geography-beginner-lesson-" +
+      number +
+      ".html";
+  }
+
+  previousCompleted = false;
+}
+
+          else {
+
+            lesson.classList.add("locked");
+
+            button.textContent = "🔒 مقفول";
+
+            button.removeAttribute("href");
+
+            previousCompleted = false;
+
+          }
+
+        });
+
+
+        const allCompleted =
+          isCompleted(1) &&
+          isCompleted(2) &&
+          isCompleted(3) &&
+          isCompleted(4) &&
+          isCompleted(5);
+
+
+        if (allCompleted) {
+
+          testCard.classList.remove("locked");
+
+          testButton.textContent =
+            "ابدأ الاختبار";
+
+          testButton.href =
+            "geography-beginner-test.html";
+
+        }
+
+        else {
+
+          testCard.classList.add("locked");
+
+          testButton.textContent =
+            "🔒 أكمل جميع الدروس أولاً";
+
+          testButton.removeAttribute("href");
+
+        }
+
+      }
+
+
+      updateLocks();
+
+    });
+
+  </script>
+
+
+</body>
+</html>

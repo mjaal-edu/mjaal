@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مجال | تعلّم، اكتشف وطور نفسك</title>
+
+  <!-- خط Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #f5fff8;
+      color: #173b2a;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 0;
+    }
+
+    /* العنوان */
+    .intro {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .intro h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .intro p {
+      font-size: 21px;
+      font-weight: 600;
+      color: #3f7055;
+    }
+
+    /* الفيديو */
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: none;
+    }
+
+    /* زر ابدأ التعلّم */
+    .start-button {
+      position: absolute;
+
+      /* مكان الزر */
+      top: 64%;
+      left: 31%;
+
+      transform: translate(-50%, -50%);
+
+      padding: 12px 30px;
+
+      background: #22a05a;
+      color: white;
+
+      text-decoration: none;
+      font-size: 19px;
+      font-weight: 700;
+
+      border-radius: 12px;
+
+      box-shadow: 0 5px 15px rgba(34, 160, 90, 0.30);
+
+      /* مخفي في البداية */
+      opacity: 0;
+
+      /* يظهر بعد ثانيتين */
+      animation: showButton 0.5s ease forwards;
+      animation-delay: 3.5s;
+
+      z-index: 10;
+    }
+
+    /* حركة ظهور الزر */
+    @keyframes showButton {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* حركة الماوس */
+    .start-button:hover {
+      transform: translate(-50%, -50%) translateY(-3px);
+      background: #188b4b;
+      box-shadow: 0 8px 20px rgba(34, 160, 90, 0.40);
+    }
+
+    /* تعريف المنصة */
+    .about {
+      margin-top: 35px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+
+      text-align: right;
+    }
+
+    .about h2 {
+      font-size: 27px;
+      margin-bottom: 12px;
+      font-weight: 800;
+    }
+
+    .about p {
+      font-size: 18px;
+      line-height: 2;
+      color: #4b6356;
+    }
+
+    /* الهاتف */
+    @media (max-width: 600px) {
+
+      .container {
+        width: 94%;
+        padding: 25px 0;
+      }
+
+      .intro h1 {
+        font-size: 29px;
+      }
+
+      .intro p {
+        font-size: 17px;
+      }
+
+      .start-button {
+        font-size: 15px;
+        padding: 9px 20px;
+
+        top: 64%;
+        left: 30%;
+      }
+
+      .about {
+        padding: 20px;
+      }
+
+      .about h2 {
+        font-size: 23px;
+      }
+
+      .about p {
+        font-size: 16px;
+        line-height: 1.9;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- عنوان المنصة -->
+    <section class="intro">
+      <h1>منصة مجال</h1>
+      <p>تعلّم، اكتشف وطور نفسك</p>
+    </section>
+
+    <!-- الفيديو -->
+    <section class="video-container">
+
+      <iframe
+        src="https://www.canva.com/design/DAHURoyuJ4k/HjxyDK2yYvf86nEjkI6d0Q/view?embed"
+        allowfullscreen>
+      </iframe>
+
+      <!-- الزر الحقيقي -->
+      <a href="fields.html" class="start-button">
+        ابدأ التعلّم
+      </a>
+
+    </section>
+
+    <!-- تعريف المنصة -->
+    <section class="about">
+
+      <h2>عن منصة مجال</h2>
+
+      <p>
+        مجال هي منصة تعليمية تهدف إلى توسيع معرفتك واكتشاف مجالات جديدة
+        بطريقة منظمة وتدريجية. نأخذك من الأساسيات إلى المستويات المتقدمة
+        عبر دروس مبسطة، اختبارات تفاعلية، وملخصات تساعدك على تثبيت ما تعلمته.
+        اختر مجالك، ابدأ من مستواك، وابنِ معرفتك خطوة بخطوة.
+      </p>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

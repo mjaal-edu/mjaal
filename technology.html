@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>التكنولوجيا وعلوم الحاسوب | منصة مجال</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      color: #eefaff;
+      background: #020b0d;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       زر الرجوع
+    ========================= */
+
+    .back {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      z-index: 1000;
+
+      width: 42px;
+      height: 42px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #27d9ff;
+      background: rgba(0, 180, 220, 0.08);
+
+      border: 1px solid rgba(39, 217, 255, 0.30);
+
+      text-decoration: none;
+
+      font-size: 22px;
+      font-weight: 700;
+
+      transition: 0.3s ease;
+    }
+
+    .back:hover {
+      color: #ffffff;
+
+      background: rgba(0, 190, 220, 0.18);
+
+      border-color: #27d9ff;
+
+      transform: scale(1.08);
+
+      box-shadow:
+        0 0 15px rgba(39, 217, 255, 0.30),
+        0 0 30px rgba(39, 217, 255, 0.12);
+    }
+
+    .back::after {
+      content: "العودة إلى المجالات";
+
+      position: absolute;
+
+      top: 50%;
+      left: 52px;
+
+      transform:
+        translateY(-50%)
+        translateX(-5px);
+
+      white-space: nowrap;
+
+      padding: 7px 12px;
+
+      border-radius: 10px;
+
+      background: #07151a;
+
+      border:
+        1px solid
+        rgba(39, 217, 255, 0.25);
+
+      color: #ffffff;
+
+      font-size: 12px;
+      font-weight: 600;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition: 0.25s ease;
+
+      pointer-events: none;
+    }
+
+    .back:hover::after {
+      opacity: 1;
+      visibility: visible;
+
+      transform:
+        translateY(-50%)
+        translateX(0);
+    }
+
+
+    /* =========================
+       الصفحة والخلفية
+    ========================= */
+
+    .page {
+      position: relative;
+
+      min-height: 100vh;
+
+      background:
+
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(0, 210, 180, 0.12),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(0, 130, 255, 0.13),
+          transparent 28%
+        ),
+
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(0, 255, 190, 0.07),
+          transparent 35%
+        ),
+
+        #020b0d;
+
+      overflow: hidden;
+
+      isolation: isolate;
+    }
+
+
+    /* =========================
+       Matrix Background
+    ========================= */
+
+    .matrix {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 0;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      opacity: 0.50;
+    }
+
+
+    .matrix-column {
+      position: absolute;
+
+      top: -120px;
+
+      color: #00ffb3;
+
+      font-family: monospace;
+
+      font-size: 15px;
+
+      line-height: 1.45;
+
+      white-space: pre;
+
+      text-shadow:
+        0 0 5px rgba(0,255,179,0.75),
+        0 0 12px rgba(0,255,179,0.30);
+
+      opacity: 0.45;
+
+      animation-name: matrixFall;
+
+      animation-timing-function: linear;
+
+      animation-iteration-count: infinite;
+    }
+
+
+    @keyframes matrixFall {
+
+      from {
+        transform: translateY(-20vh);
+      }
+
+      to {
+        transform: translateY(125vh);
+      }
+
+    }
+
+
+    /* =========================
+       طبقة تغميق فوق Matrix
+    ========================= */
+
+    .matrix-overlay {
+      position: absolute;
+
+      inset: 0;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(2,11,13,0.45),
+          rgba(2,11,13,0.12),
+          rgba(2,11,13,0.45)
+        ),
+
+        linear-gradient(
+          180deg,
+          rgba(2,11,13,0.30),
+          rgba(2,11,13,0.05),
+          rgba(2,11,13,0.45)
+        );
+    }
+
+
+    /* =========================
+       المحتوى
+    ========================= */
+
+    .container {
+      position: relative;
+
+      z-index: 2;
+
+      width: 92%;
+      max-width: 1150px;
+
+      margin: auto;
+
+      padding: 45px 0 70px;
+    }
+
+
+    /* =========================
+       الهيدر
+    ========================= */
+
+    .hero {
+      text-align: center;
+
+      padding: 35px 20px 45px;
+    }
+
+
+    .hero-icon {
+      width: 105px;
+      height: 105px;
+
+      margin:
+        0 auto 22px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background:
+        rgba(0, 190, 220, 0.055);
+
+      border:
+        1px solid
+        rgba(39, 217, 255, 0.20);
+
+      border-radius: 30px;
+
+      box-shadow:
+        0 0 30px rgba(0,210,230,0.10),
+        inset 0 0 25px rgba(0,210,230,0.04);
+    }
+
+
+    .hero-icon span {
+      font-size: 62px;
+
+      filter:
+        drop-shadow(
+          0 0 10px
+          rgba(39,217,255,0.50)
+        );
+    }
+
+
+    .hero h1 {
+      font-size: 46px;
+
+      font-weight: 800;
+
+      margin-bottom: 12px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #35dfff,
+          #a5fff0
+        );
+
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      text-shadow:
+        0 0 25px
+        rgba(0,210,255,0.12);
+    }
+
+
+    .hero p {
+      max-width: 720px;
+
+      margin: auto;
+
+      color: #9bbbc0;
+
+      font-size: 18px;
+
+      line-height: 2;
+    }
+
+
+    /* =========================
+       تعريف المجال
+    ========================= */
+
+    .intro-card {
+      position: relative;
+
+      background:
+        rgba(2, 25, 30, 0.70);
+
+      border:
+        1px solid
+        rgba(39, 217, 255, 0.20);
+
+      border-radius: 22px;
+
+      padding: 30px;
+
+      margin-bottom: 50px;
+
+      backdrop-filter: blur(12px);
+
+      box-shadow:
+        0 18px 50px rgba(0,0,0,0.28),
+        0 0 25px rgba(0,200,220,0.05);
+    }
+
+
+    .intro-card h2 {
+      font-size: 23px;
+
+      margin-bottom: 15px;
+
+      color: #27d9ff;
+    }
+
+
+    .intro-card p {
+      color: #b1c7cc;
+
+      line-height: 2.1;
+
+      font-size: 15px;
+    }
+
+
+    /* =========================
+       عنوان المستويات
+    ========================= */
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+
+    .section-title h2 {
+      font-size: 29px;
+
+      margin-bottom: 7px;
+    }
+
+
+    .section-title p {
+      color: #78969b;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       البطاقات
+    ========================= */
+
+    .levels {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+
+    .level-card {
+      position: relative;
+
+      padding: 30px 25px;
+
+      min-height: 390px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      border-radius: 22px;
+
+      background:
+        rgba(5, 25, 30, 0.68);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      backdrop-filter: blur(12px);
+
+      transition:
+        transform 0.35s ease,
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+
+    .level-card:hover {
+      transform:
+        translateY(-8px);
+
+      background:
+        rgba(8, 35, 42, 0.82);
+
+      border-color:
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 35%
+        );
+
+      box-shadow:
+        0 0 15px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 78%
+        ),
+
+        0 0 35px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 86%
+        ),
+
+        0 18px 40px
+        rgba(0,0,0,0.32);
+    }
+
+
+    /* =========================
+       رقم المستوى
+    ========================= */
+
+    .level-number {
+      color: #6e888e;
+
+      font-size: 12px;
+
+      font-weight: 600;
+
+      margin-bottom: 10px;
+
+      letter-spacing: 0.5px;
+    }
+
+
+    /* =========================
+       أيقونة المستوى
+    ========================= */
+
+    .level-icon {
+      width: 45px;
+      height: 45px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid
+        rgba(255,255,255,0.07);
+
+      font-size: 22px;
+
+      margin-bottom: 17px;
+
+      transition: 0.3s ease;
+    }
+
+
+    .level-card:hover .level-icon {
+      box-shadow:
+        0 0 15px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 60%
+        );
+
+      border-color:
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 30%
+        );
+    }
+
+
+    /* =========================
+       ألوان المستويات
+    ========================= */
+
+    .beginner {
+      --level-color: #19bfff;
+    }
+
+
+    .intermediate {
+      --level-color: #d8a932;
+    }
+
+
+    .advanced {
+      --level-color: #ef4f69;
+    }
+
+
+    /* =========================
+       عنوان البطاقة
+    ========================= */
+
+    .level-card h3 {
+      color:
+        var(--level-color);
+
+      font-size: 22px;
+
+      margin-bottom: 12px;
+    }
+
+
+    /* =========================
+       وصف البطاقة
+    ========================= */
+
+    .level-card > p {
+      color: #a8bec4;
+
+      font-size: 14px;
+
+      line-height: 1.9;
+
+      margin-bottom: 22px;
+    }
+
+
+    /* =========================
+       عنوان ماذا ستتعلم
+    ========================= */
+
+    .learn-title {
+      color: #d5e4e7;
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      margin-bottom: 12px;
+    }
+
+
+    /* =========================
+       قائمة الدروس
+    ========================= */
+
+    .learn-list {
+      list-style: none;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 9px;
+
+      margin-bottom: 25px;
+    }
+
+
+    .learn-list li {
+      position: relative;
+
+      padding-right: 16px;
+
+      color: #8fa9ae;
+
+      font-size: 13px;
+
+      line-height: 1.6;
+
+      transition: 0.25s ease;
+    }
+
+
+    .learn-list li::before {
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+
+      top: 9px;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background:
+        var(--level-color);
+
+      box-shadow:
+        0 0 7px
+        var(--level-color);
+    }
+
+
+    .learn-list li:hover {
+      color: #ffffff;
+
+      transform:
+        translateX(-3px);
+    }
+
+
+    /* =========================
+       زر المستوى
+    ========================= */
+
+    .level-button {
+      margin-top: auto;
+
+      display: block;
+
+      padding: 12px 13px;
+
+      text-align: center;
+
+      text-decoration: none;
+
+      border-radius: 12px;
+
+      color: #eafcff;
+
+      background:
+        rgba(255,255,255,0.045);
+
+      border:
+        1px solid
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 50%
+        );
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      transition: 0.3s ease;
+    }
+
+
+    /* =========================
+       إضاءة الأزرار
+    ========================= */
+
+    .level-button:hover {
+      color: #ffffff;
+
+      background:
+        var(--level-color);
+
+      border-color:
+        var(--level-color);
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+
+        0 0 10px
+        var(--level-color),
+
+        0 0 22px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 45%
+        ),
+
+        0 8px 28px
+        color-mix(
+          in srgb,
+          var(--level-color),
+          transparent 65%
+        );
+
+      filter:
+        brightness(1.12);
+    }
+
+
+    /* =========================
+       الملاحظة الأخيرة
+    ========================= */
+
+    .bottom-note {
+      text-align: center;
+
+      margin-top: 45px;
+
+      color: #6d858a;
+
+      font-size: 14px;
+    }
+
+
+    .bottom-note strong {
+      color: #4edcff;
+    }
+
+
+    /* =========================
+       الهاتف
+    ========================= */
+
+    @media (max-width: 850px) {
+
+      .levels {
+        grid-template-columns: 1fr;
+
+        max-width: 600px;
+
+        margin: auto;
+      }
+
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+      .container {
+        width: 94%;
+
+        padding-top: 25px;
+      }
+
+
+      .hero {
+        padding-top: 20px;
+      }
+
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+
+      .hero p {
+        font-size: 16px;
+      }
+
+
+      .intro-card {
+        padding: 23px;
+      }
+
+
+      .section-title h2 {
+        font-size: 26px;
+      }
+
+
+      .back {
+        top: 18px;
+
+        left: 18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- =========================
+       زر الرجوع
+  ========================= -->
+
+  <a
+    class="back"
+    href="fields.html"
+    title="العودة إلى المجالات"
+  >
+    ←
+  </a>
+
+
+  <div class="page">
+
+
+    <!-- =========================
+         خلفية Matrix
+    ========================= -->
+
+    <div
+      class="matrix"
+      id="matrix"
+    ></div>
+
+    <div class="matrix-overlay"></div>
+
+
+    <!-- =========================
+         المحتوى
+    ========================= -->
+
+    <main class="container">
+
+
+      <!-- الهيدر -->
+
+      <header class="hero">
+
+        <div class="hero-icon">
+
+          <span>💻</span>
+
+        </div>
+
+
+        <h1>
+          التكنولوجيا وعلوم الحاسوب
+        </h1>
+
+
+        <p>
+          اكتشف عالم البرمجة والتقنيات الحديثة،
+          وابنِ مستقبلك في عالم يعتمد على التكنولوجيا.
+        </p>
+
+      </header>
+
+
+      <!-- تعريف المجال -->
+
+      <section class="intro-card">
+
+        <h2>
+          🖥️ ماذا ستكتشف في هذا المجال؟
+        </h2>
+
+
+        <p>
+          التكنولوجيا وعلوم الحاسوب هي المجال الذي يجمع
+          بين البرمجة والأجهزة والشبكات والذكاء الاصطناعي.
+          ستتعلم كيف يعمل الحاسوب، وكيف تُكتب البرامج،
+          وكيف تُبنى المواقع والتطبيقات، وتتعرّف على
+          التقنيات الحديثة التي تشكل مستقبل العالم الرقمي.
+        </p>
+
+      </section>
+
+
+      <!-- المستويات -->
+
+      <section>
+
+
+        <div class="section-title">
+
+          <h2>
+            🎓 اختر مستواك
+          </h2>
+
+
+          <p>
+            تعلّم بالتدريج، وكل مستوى يفتح الطريق لما بعده
+          </p>
+
+        </div>
+
+
+        <div class="levels">
+
+
+          <!-- =========================
+               المبتدئ
+          ========================= -->
+
+          <article
+            class="level-card beginner"
+          >
+
+            <div class="level-number">
+              المستوى 01
+            </div>
+
+
+            <div class="level-icon">
+              🟢
+            </div>
+
+
+            <h3>
+              مبتدئ
+            </h3>
+
+
+            <p>
+              ابدأ من الصفر وتعرّف على أساسيات
+              الحاسوب والبرمجة، وتعلم كيف تستخدم
+              الأدوات الأساسية في عالم التكنولوجيا.
+            </p>
+
+
+            <div class="learn-title">
+              ماذا ستتعلم؟
+            </div>
+
+
+            <ul class="learn-list">
+
+              <li>
+                مكونات الحاسوب وكيف يعمل
+              </li>
+
+              <li>
+                أنظمة التشغيل والملفات
+              </li>
+
+              <li>
+                الإنترنت وكيفية استخدامه
+              </li>
+
+              <li>
+                أساسيات البرمجة
+              </li>
+
+              <li>
+                الأمان الرقمي وحماية المعلومات
+              </li>
+
+            </ul>
+
+
+            <a
+              href="tech-beginner.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+
+          <!-- =========================
+               المتوسط
+          ========================= -->
+
+          <article
+            class="level-card intermediate"
+          >
+
+            <div class="level-number">
+              المستوى 02
+            </div>
+
+
+            <div class="level-icon">
+              🟡
+            </div>
+
+
+            <h3>
+              متوسط
+            </h3>
+
+
+            <p>
+              تعمّق في مفاهيم البرمجة وتطوير الويب،
+              وتعلم كيف تبني تطبيقات بسيطة ومتوسطة التعقيد.
+            </p>
+
+
+            <div class="learn-title">
+              ماذا ستتعلم؟
+            </div>
+
+
+            <ul class="learn-list">
+
+              <li>
+                كيف يعمل الإنترنت؟
+              </li>
+
+              <li>
+                البرمجة ومفاهيمها الأساسية
+              </li>
+
+              <li>
+                قواعد البيانات
+              </li>
+
+              <li>
+                الشبكات وأنواعها
+              </li>
+
+              <li>
+                الذكاء الاصطناعي
+              </li>
+
+            </ul>
+
+
+            <a
+              href="tech-intermediate.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+
+          <!-- =========================
+               المتقدم
+          ========================= -->
+
+          <article
+            class="level-card advanced"
+          >
+
+            <div class="level-number">
+              المستوى 03
+            </div>
+
+
+            <div class="level-icon">
+              🔴
+            </div>
+
+
+            <h3>
+              متقدم
+            </h3>
+
+
+            <p>
+              تعمّق في التقنيات المتقدمة وابدأ في بناء
+              مشاريع حقيقية، لتصبح محترفًا في عالم
+              البرمجة والتكنولوجيا.
+            </p>
+
+
+            <div class="learn-title">
+              ماذا ستتعلم؟
+            </div>
+
+
+            <ul class="learn-list">
+
+              <li>
+                الخوارزميات وهياكل البيانات
+              </li>
+
+              <li>
+                البرمجة المتقدمة
+              </li>
+
+              <li>
+                الأمن السيبراني
+              </li>
+
+              <li>
+                الحوسبة السحابية
+              </li>
+
+              <li>
+                تعلم الآلة
+              </li>
+
+            </ul>
+
+
+            <a
+              href="tech-advanced.html"
+              class="level-button"
+            >
+              ابدأ المستوى
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- النهاية -->
+
+      <div class="bottom-note">
+
+        <strong>
+          مستقبلك الرقمي يبدأ من هنا.
+        </strong>
+
+      </div>
+
+
+    </main>
+
+  </div>
+
+
+  <!-- =========================
+       JavaScript Matrix
+  ========================= -->
+
+  <script>
+
+    const matrix =
+      document.getElementById("matrix");
+
+
+    const characters =
+      "010101010101010101010101010101010101";
+
+
+    const columnCount =
+      Math.floor(window.innerWidth / 22);
+
+
+    for (
+      let i = 0;
+      i < columnCount;
+      i++
+    ) {
+
+      const column =
+        document.createElement("div");
+
+
+      column.className =
+        "matrix-column";
+
+
+      let text = "";
+
+
+      const length =
+        Math.floor(
+          Math.random() * 25
+        ) + 15;
+
+
+      for (
+        let j = 0;
+        j < length;
+        j++
+      ) {
+
+        text +=
+          characters[
+            Math.floor(
+              Math.random() *
+              characters.length
+            )
+          ];
+
+        text += "\n";
+
+      }
+
+
+      column.textContent =
+        text;
+
+
+      column.style.left =
+        (i * 22) + "px";
+
+
+      column.style.animationDuration =
+        (
+          Math.random() * 7 + 5
+        ) + "s";
+
+
+      column.style.animationDelay =
+        (
+          Math.random() * -10
+        ) + "s";
+
+
+      column.style.opacity =
+        (
+          Math.random() * 0.45 + 0.15
+        );
+
+
+      column.style.fontSize =
+        (
+          Math.random() * 5 + 12
+        ) + "px";
+
+
+      matrix.appendChild(
+        column
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>

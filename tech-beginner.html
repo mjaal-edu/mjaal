@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>المستوى المبتدئ | التكنولوجيا وعلوم الحاسوب | منصة مجال</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      color: #eefaff;
+      background: #020b0d;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       زر العودة
+    ========================= */
+
+    .back {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: #27d9ff;
+      background: rgba(39, 217, 255, 0.08);
+      border: 1px solid rgba(39, 217, 255, 0.35);
+
+      font-size: 21px;
+
+      z-index: 20;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .back::after {
+      content: "العودة إلى التكنولوجيا وعلوم الحاسوب";
+
+      position: absolute;
+      left: 52px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      background: rgba(3, 18, 22, 0.95);
+      border: 1px solid rgba(39, 217, 255, 0.25);
+
+      color: #bcefff;
+
+      padding: 7px 11px;
+      border-radius: 9px;
+
+      font-size: 11px;
+      white-space: nowrap;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: opacity 0.2s ease;
+    }
+
+    .back:hover {
+      transform: scale(1.08);
+
+      background: rgba(39, 217, 255, 0.13);
+
+      box-shadow:
+        0 0 12px rgba(39, 217, 255, 0.45),
+        0 0 28px rgba(39, 217, 255, 0.18);
+    }
+
+    .back:hover::after {
+      opacity: 1;
+    }
+
+    /* =========================
+       الصفحة
+    ========================= */
+
+    .page {
+      min-height: 100vh;
+
+      position: relative;
+
+      background:
+        radial-gradient(
+          circle at 20% 10%,
+          rgba(0, 210, 180, 0.12),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 80% 30%,
+          rgba(0, 130, 255, 0.13),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(0, 255, 190, 0.07),
+          transparent 40%
+        ),
+        #020b0d;
+
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    /* =========================
+       Matrix
+    ========================= */
+
+    .matrix {
+      position: absolute;
+      inset: 0;
+
+      z-index: 0;
+
+      overflow: hidden;
+
+      opacity: 0.50;
+      pointer-events: none;
+    }
+
+    .matrix-column {
+      position: absolute;
+
+      top: -100%;
+
+      color: #00ffb3;
+
+      font-family: monospace;
+      font-size: 15px;
+
+      line-height: 1.45;
+
+      white-space: pre;
+
+      text-shadow:
+        0 0 5px rgba(0, 255, 179, 0.75),
+        0 0 12px rgba(0, 255, 179, 0.35);
+
+      opacity: 0.45;
+
+      animation: matrixFall linear infinite;
+    }
+
+    @keyframes matrixFall {
+      from {
+        transform: translateY(-10%);
+      }
+
+      to {
+        transform: translateY(220%);
+      }
+    }
+
+    .matrix-overlay {
+      position: absolute;
+      inset: 0;
+
+      z-index: 1;
+
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.18) 50%,
+          rgba(0, 0, 0, 0.32) 50%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.22),
+          transparent 35%,
+          transparent 65%,
+          rgba(0, 0, 0, 0.22)
+        );
+
+      background-size:
+        100% 4px,
+        100% 100%;
+    }
+
+    /* =========================
+       الحاوية
+    ========================= */
+
+    .container {
+      position: relative;
+
+      z-index: 2;
+
+      width: 92%;
+      max-width: 1050px;
+
+      margin: auto;
+
+      padding: 45px 0 70px;
+    }
+
+    /* =========================
+       Hero
+    ========================= */
+
+    .hero {
+      text-align: center;
+
+      padding: 35px 20px 45px;
+    }
+
+    .hero-icon {
+      width: 105px;
+      height: 105px;
+
+      margin: 0 auto 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(25, 191, 255, 0.08);
+
+      border: 1px solid rgba(25, 191, 255, 0.35);
+
+      border-radius: 30px;
+
+      box-shadow:
+        0 0 18px rgba(25, 191, 255, 0.16),
+        0 0 45px rgba(25, 191, 255, 0.07);
+    }
+
+    .hero-icon span {
+      font-size: 62px;
+
+      filter:
+        drop-shadow(0 0 8px rgba(39, 217, 255, 0.6));
+    }
+
+    .hero h1 {
+      font-size: 46px;
+      font-weight: 800;
+
+      margin-bottom: 12px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #35dfff,
+          #a5fff0
+        );
+
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      text-shadow:
+        0 0 20px rgba(39, 217, 255, 0.12);
+    }
+
+    .hero p {
+      max-width: 720px;
+
+      margin: auto;
+
+      color: #9bbbc0;
+
+      font-size: 18px;
+
+      line-height: 2;
+    }
+
+    /* =========================
+       التعريف
+    ========================= */
+
+    .intro-card {
+      background: rgba(5, 25, 29, 0.68);
+
+      border: 1px solid rgba(39, 217, 255, 0.16);
+
+      border-radius: 22px;
+
+      padding: 30px;
+
+      margin-bottom: 50px;
+
+      backdrop-filter: blur(10px);
+
+      box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.22),
+        inset 0 0 30px rgba(39, 217, 255, 0.025);
+    }
+
+    .intro-card h2 {
+      color: #27d9ff;
+
+      font-size: 23px;
+
+      margin-bottom: 13px;
+    }
+
+    .intro-card p {
+      color: #b1c7cc;
+
+      line-height: 2.1;
+
+      font-size: 15px;
+    }
+
+    /* =========================
+       عنوان الدروس
+    ========================= */
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 29px;
+
+      margin-bottom: 7px;
+    }
+
+    .section-title p {
+      color: #78969b;
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       قائمة الدروس
+    ========================= */
+
+    .lessons {
+      display: flex;
+      flex-direction: column;
+
+      gap: 16px;
+    }
+
+    /* =========================
+       بطاقة الدرس الجديدة
+    ========================= */
+
+    .lesson-card {
+      position: relative;
+
+      min-height: 145px;
+
+      padding: 20px 22px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 20px;
+
+      background: rgba(5, 25, 29, 0.72);
+
+      border: 1px solid rgba(255, 255, 255, 0.075);
+
+      border-radius: 18px;
+
+      backdrop-filter: blur(10px);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    /* الخط المضيء */
+
+    .lesson-card::before {
+      content: "";
+
+      position: absolute;
+
+      right: 0;
+      top: 0;
+
+      width: 4px;
+      height: 100%;
+
+      background: #19bfff;
+
+      box-shadow:
+        0 0 12px #19bfff;
+
+      opacity: 0;
+
+      transition: opacity 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      transform: translateY(-6px);
+
+      background: rgba(255, 255, 255, 0.075);
+
+      border-color: rgba(25, 191, 255, 0.42);
+
+      box-shadow:
+        0 0 15px rgba(25, 191, 255, 0.13),
+        0 0 30px rgba(25, 191, 255, 0.08),
+        0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .lesson-card:hover::before {
+      opacity: 1;
+
+      box-shadow:
+        0 0 12px #19bfff;
+    }
+
+    /* =========================
+       رقم الدرس
+    ========================= */
+
+    .lesson-number-box {
+      width: 48px;
+      height: 48px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background: rgba(25, 191, 255, 0.055);
+
+      border: 1px solid rgba(25, 191, 255, 0.18);
+
+      color: #19bfff;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      transition: 0.3s ease;
+    }
+
+    .lesson-card:hover .lesson-number-box {
+      background: rgba(25, 191, 255, 0.10);
+
+      border-color: rgba(25, 191, 255, 0.40);
+
+      box-shadow:
+        0 0 15px rgba(25, 191, 255, 0.15);
+
+      transform: scale(1.05);
+    }
+
+    /* =========================
+       أيقونة الدرس
+    ========================= */
+
+    .lesson-icon {
+      width: 58px;
+      height: 58px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+
+      background: rgba(25, 191, 255, 0.07);
+
+      border: 1px solid rgba(25, 191, 255, 0.16);
+
+      font-size: 27px;
+
+      transition: 0.3s ease;
+    }
+
+    .lesson-card:hover .lesson-icon {
+      transform: scale(1.07);
+
+      box-shadow:
+        0 0 18px rgba(25, 191, 255, 0.20);
+    }
+
+    /* =========================
+       معلومات الدرس
+    ========================= */
+
+    .lesson-content {
+      flex: 1;
+
+      min-width: 0;
+    }
+
+    .lesson-content h3 {
+      color: #19bfff;
+
+      font-size: 19px;
+
+      margin-bottom: 5px;
+    }
+
+    .lesson-content p {
+      color: #91aeb4;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    /* =========================
+       زر الدرس
+    ========================= */
+
+    .lesson-button {
+      flex-shrink: 0;
+
+      min-width: 135px;
+
+      padding: 10px 15px;
+
+      text-align: center;
+
+      border-radius: 11px;
+
+      color: #eafcff;
+
+      background: rgba(25, 191, 255, 0.055);
+
+      border: 1px solid rgba(25, 191, 255, 0.25);
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .lesson-button:hover {
+      color: #ffffff;
+
+      background: #19bfff;
+
+      border-color: #19bfff;
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 0 10px rgba(25, 191, 255, 0.60),
+        0 0 25px rgba(25, 191, 255, 0.30),
+        0 8px 25px rgba(25, 191, 255, 0.20);
+    }
+
+    /* =========================
+       المقفول
+    ========================= */
+
+    .lesson-card.locked,
+    .test-card.locked {
+      opacity: 0.48;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       الاختبار النهائي
+    ========================= */
+
+    .test-card {
+      position: relative;
+
+      margin-top: 25px;
+
+      padding: 27px 30px;
+
+      display: flex;
+      align-items: center;
+
+      gap: 22px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(25, 191, 255, 0.075),
+          rgba(5, 25, 29, 0.72)
+        );
+
+      border: 1px solid rgba(25, 191, 255, 0.20);
+
+      border-radius: 20px;
+
+      backdrop-filter: blur(10px);
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .test-card:hover {
+      transform: translateY(-5px);
+
+      border-color: rgba(25, 191, 255, 0.38);
+
+      box-shadow:
+        0 0 18px rgba(25, 191, 255, 0.12),
+        0 15px 35px rgba(0, 0, 0, 0.22);
+    }
+
+    .test-icon {
+      width: 60px;
+      height: 60px;
+
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 17px;
+
+      background: rgba(25, 191, 255, 0.09);
+
+      border: 1px solid rgba(25, 191, 255, 0.20);
+
+      font-size: 30px;
+    }
+
+    .test-info {
+      flex: 1;
+    }
+
+    .test-info h3 {
+      color: #19bfff;
+
+      font-size: 20px;
+
+      margin-bottom: 5px;
+    }
+
+    .test-info p {
+      color: #8fa9ae;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+    }
+
+    .test-button {
+      flex-shrink: 0;
+
+      min-width: 170px;
+
+      padding: 11px 18px;
+
+      text-align: center;
+
+      border-radius: 11px;
+
+      color: #eafcff;
+
+      background: rgba(25, 191, 255, 0.055);
+
+      border: 1px solid rgba(25, 191, 255, 0.25);
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        color 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .test-button:hover {
+      color: #ffffff;
+
+      background: #19bfff;
+
+      border-color: #19bfff;
+
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 0 12px rgba(25, 191, 255, 0.55),
+        0 0 28px rgba(25, 191, 255, 0.22);
+    }
+
+    /* =========================
+       الملاحظة
+    ========================= */
+
+    .bottom-note {
+      text-align: center;
+
+      margin-top: 45px;
+
+      color: #6d858a;
+
+      font-size: 14px;
+    }
+
+    .bottom-note strong {
+      color: #4edcff;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .lesson-card {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+
+        padding: 20px;
+      }
+
+      .lesson-content {
+        flex-basis: calc(100% - 90px);
+      }
+
+      .lesson-button {
+        width: 100%;
+
+        margin-top: 5px;
+      }
+
+      .test-card {
+        flex-wrap: wrap;
+      }
+
+      .test-info {
+        flex-basis: calc(100% - 85px);
+      }
+
+      .test-button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .container {
+        width: 94%;
+
+        padding-top: 25px;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .intro-card {
+        padding: 23px;
+      }
+
+      .section-title h2 {
+        font-size: 26px;
+      }
+
+      .back {
+        top: 18px;
+        left: 18px;
+      }
+
+      .back::after {
+        display: none;
+      }
+
+      .lesson-number-box {
+        width: 43px;
+        height: 43px;
+      }
+
+      .lesson-icon {
+        width: 52px;
+        height: 52px;
+      }
+
+      .lesson-content h3 {
+        font-size: 17px;
+      }
+
+      .lesson-content p {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- زر العودة -->
+  <a
+    href="technology.html"
+    class="back"
+    aria-label="العودة إلى التكنولوجيا وعلوم الحاسوب،"
+  >
+    ←
+  </a>
+
+
+  <div class="page">
+
+    <!-- Matrix -->
+    <div class="matrix" id="matrix"></div>
+
+    <div class="matrix-overlay"></div>
+
+
+    <main class="container">
+
+      <!-- =========================
+           Hero
+      ========================= -->
+
+      <section class="hero">
+
+        <div class="hero-icon">
+          <span>💻</span>
+        </div>
+
+        <h1>
+          المستوى المبتدئ
+        </h1>
+
+        <p>
+          ابدأ رحلتك في عالم التكنولوجيا وعلوم الحاسوب من الصفر،
+          وتعلّم الأساسيات التي ستبني عليها مهاراتك الرقمية.
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           التعريف
+      ========================= -->
+
+      <section class="intro-card">
+
+        <h2>
+          🖥️ ماذا ستتعلم في هذا المستوى؟
+        </h2>
+
+        <p>
+          في هذا المستوى ستكتشف أساسيات الحاسوب والتكنولوجيا بطريقة
+          بسيطة وتدريجية. ستتعرف على مكونات الحاسوب، وكيف يعمل،
+          وأنظمة التشغيل والملفات، ثم تنتقل إلى الإنترنت والشبكات
+          والأمن الرقمي الأساسي.
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           عنوان الدروس
+      ========================= -->
+
+      <section class="section-title">
+
+        <h2>
+          📚 دروس المستوى المبتدئ
+        </h2>
+
+        <p>
+          أكمل الدروس بالتدريج، وكل درس يفتح لك الطريق للدرس الذي يليه
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           الدروس
+      ========================= -->
+
+      <section class="lessons">
+
+
+        <!-- الدرس 1 -->
+
+        <article
+          class="lesson-card"
+          data-lesson="1"
+        >
+
+          <div class="lesson-number-box">
+            01
+          </div>
+
+          <div class="lesson-icon">
+            🖥️
+          </div>
+
+          <div class="lesson-content">
+
+            <h3>
+              ما هو الحاسوب وكيف يعمل؟
+            </h3>
+
+            <p>
+              تعرّف على الحاسوب، وظيفته، وكيف يستقبل البيانات
+              ويعالجها ويحوّلها إلى معلومات.
+            </p>
+
+          </div>
+
+          <a href="under-development.html" class="lesson-button">
+    ابدأ الدرس
+</a>
+
+        </article>
+
+
+        <!-- الدرس 2 -->
+
+        <article
+          class="lesson-card"
+          data-lesson="2"
+        >
+
+          <div class="lesson-number-box">
+            02
+          </div>
+
+          <div class="lesson-icon">
+            ⚙️
+          </div>
+
+          <div class="lesson-content">
+
+            <h3>
+              مكونات الحاسوب
+            </h3>
+
+            <p>
+              اكتشف أهم مكونات الحاسوب مثل المعالج والذاكرة
+              والتخزين والشاشة ولوحة المفاتيح وغيرها.
+            </p>
+
+          </div>
+
+          <a
+            class="lesson-button"
+            href="tech-beginner-lesson-2.html"
+          >
+            ابدأ الدرس
+          </a>
+
+        </article>
+
+
+        <!-- الدرس 3 -->
+
+        <article
+          class="lesson-card"
+          data-lesson="3"
+        >
+
+          <div class="lesson-number-box">
+            03
+          </div>
+
+          <div class="lesson-icon">
+            📁
+          </div>
+
+          <div class="lesson-content">
+
+            <h3>
+              نظام التشغيل والملفات
+            </h3>
+
+            <p>
+              تعلّم ما هو نظام التشغيل، وكيف تنظم الملفات
+              والمجلدات وتتعامل معها على جهازك.
+            </p>
+
+          </div>
+
+          <a
+            class="lesson-button"
+            href="tech-beginner-lesson-3.html"
+          >
+            ابدأ الدرس
+          </a>
+
+        </article>
+
+
+        <!-- الدرس 4 -->
+
+        <article
+          class="lesson-card"
+          data-lesson="4"
+        >
+
+          <div class="lesson-number-box">
+            04
+          </div>
+
+          <div class="lesson-icon">
+            🌐
+          </div>
+
+          <div class="lesson-content">
+
+            <h3>
+              الإنترنت والشبكات
+            </h3>
+
+            <p>
+              افهم فكرة الإنترنت والشبكات، وكيف تتصل الأجهزة
+              ببعضها وتتبادل المعلومات.
+            </p>
+
+          </div>
+
+          <a
+            class="lesson-button"
+            href="tech-beginner-lesson-4.html"
+          >
+            ابدأ الدرس
+          </a>
+
+        </article>
+
+
+        <!-- الدرس 5 -->
+
+        <article
+          class="lesson-card"
+          data-lesson="5"
+        >
+
+          <div class="lesson-number-box">
+            05
+          </div>
+
+          <div class="lesson-icon">
+            🔐
+          </div>
+
+          <div class="lesson-content">
+
+            <h3>
+              الأمن الرقمي الأساسي
+            </h3>
+
+            <p>
+              تعلّم أساسيات حماية حساباتك وأجهزتك، وكيف تتجنب
+              الروابط والرسائل والبرامج المشبوهة.
+            </p>
+
+          </div>
+
+          <a
+            class="lesson-button"
+            href="tech-beginner-lesson-5.html"
+          >
+            ابدأ الدرس
+          </a>
+
+        </article>
+
+      </section>
+
+
+      <!-- =========================
+           الاختبار النهائي
+      ========================= -->
+
+      <section
+        class="test-card locked"
+        data-test="final"
+      >
+
+        <div class="test-icon">
+          📝
+        </div>
+
+        <div class="test-info">
+
+          <h3>
+            الاختبار النهائي
+          </h3>
+
+          <p>
+            اختبر معلوماتك في جميع دروس المستوى المبتدئ.
+            يجب إكمال جميع الدروس أولًا لفتح الاختبار.
+          </p>
+
+        </div>
+
+        <a
+          class="test-button"
+          href="tech-beginner-test.html"
+        >
+          🔒 أكمل جميع الدروس أولاً
+        </a>
+
+      </section>
+
+
+      <!-- =========================
+           الملاحظة
+      ========================= -->
+
+      <div class="bottom-note">
+        مستقبلك الرقمي يبدأ من هنا
+        <strong>💻</strong>
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <script>
+
+    /* =========================
+       Matrix
+    ========================= */
+
+    const matrix =
+      document.getElementById("matrix");
+
+    const chars =
+      "010101010101010101010101010101010101";
+
+    const columnWidth = 22;
+
+    const columnCount =
+      Math.floor(
+        window.innerWidth / columnWidth
+      );
+
+    for (
+      let i = 0;
+      i < columnCount;
+      i++
+    ) {
+
+      const column =
+        document.createElement("div");
+
+      column.className =
+        "matrix-column";
+
+      const length =
+        Math.floor(
+          Math.random() * 25
+        ) + 15;
+
+      let text = "";
+
+      for (
+        let j = 0;
+        j < length;
+        j++
+      ) {
+
+        text +=
+          chars[
+            Math.floor(
+              Math.random() * chars.length
+            )
+          ] + "\n";
+
+      }
+
+      column.textContent = text;
+
+      column.style.left =
+        (i * columnWidth) + "px";
+
+      column.style.animationDuration =
+        (Math.random() * 7 + 5) + "s";
+
+      column.style.animationDelay =
+        -(Math.random() * 10) + "s";
+
+      column.style.opacity =
+        (Math.random() * 0.45 + 0.15);
+
+      column.style.fontSize =
+        (Math.random() * 5 + 12) + "px";
+
+      matrix.appendChild(column);
+    }
+
+
+    /* =========================
+       نظام القفل
+    ========================= */
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      function () {
+
+        const lessons =
+          document.querySelectorAll(
+            ".lesson-card"
+          );
+
+        const testCard =
+          document.querySelector(
+            ".test-card"
+          );
+
+        const testButton =
+          document.querySelector(
+            ".test-button"
+          );
+
+
+        function isCompleted(number) {
+
+          return localStorage.getItem(
+            "tech_beginner_lesson_" +
+            number
+          ) === "completed";
+
+        }
+
+
+        function updateLocks() {
+
+          let previousCompleted = true;
+
+
+          lessons.forEach(
+            function (lesson) {
+
+              const number =
+                Number(
+                  lesson.dataset.lesson
+                );
+
+              const button =
+                lesson.querySelector(
+                  ".lesson-button"
+                );
+
+
+              if (
+                isCompleted(number)
+              ) {
+
+                lesson.classList.remove(
+                  "locked"
+                );
+
+                button.textContent =
+                  "إعادة الدرس";
+
+                button.href =
+                  "tech-beginner-lesson-" +
+                  number +
+                  ".html";
+
+                previousCompleted = true;
+
+              }
+
+
+             else if (previousCompleted) {
+
+  lesson.classList.remove("locked");
+
+  button.textContent = "ابدأ الدرس";
+
+  if (number === 1) {
+    button.href = "under-development.html";
+  } else {
+    button.href =
+      "geography-beginner-lesson-" +
+      number +
+      ".html";
+  }
+
+  previousCompleted = false;
+}
+
+              else {
+
+                lesson.classList.add(
+                  "locked"
+                );
+
+                button.textContent =
+                  "🔒 مقفول";
+
+                button.removeAttribute(
+                  "href"
+                );
+
+                previousCompleted = false;
+
+              }
+
+            }
+          );
+
+
+          const allCompleted =
+            isCompleted(1) &&
+            isCompleted(2) &&
+            isCompleted(3) &&
+            isCompleted(4) &&
+            isCompleted(5);
+
+
+          if (allCompleted) {
+
+            testCard.classList.remove(
+              "locked"
+            );
+
+            testButton.textContent =
+              "ابدأ الاختبار";
+
+            testButton.href =
+              "tech-beginner-test.html";
+
+          }
+
+
+          else {
+
+            testCard.classList.add(
+              "locked"
+            );
+
+            testButton.textContent =
+              "🔒 أكمل جميع الدروس أولاً";
+
+            testButton.removeAttribute(
+              "href"
+            );
+
+          }
+
+        }
+
+
+        updateLocks();
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مجال | المستوى المبتدئ - الفضاء والفلك</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Cairo", sans-serif;
+    color: #fff;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(76, 175, 80, .20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(33, 150, 243, .10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.5) 1px,
+            transparent 1.5px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.25) 1px,
+            transparent 1.5px
+        ),
+        #07111f;
+
+    background-size:
+        auto,
+        auto,
+        90px 90px,
+        150px 150px,
+        auto;
+
+    background-position:
+        center,
+        center,
+        10px 20px,
+        50px 70px,
+        center;
+
+    background-attachment: fixed;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 40px 20px 60px;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    text-align: center;
+    padding: 45px 20px 25px;
+}
+
+.top-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.back {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    z-index: 1000;
+
+    display: inline-flex;
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    color: #7ee787;
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    border: 1px solid rgba(126, 231, 135, .35);
+    background: rgba(76, 175, 80, .10);
+
+    transition: .3s ease;
+}
+
+.back:hover {
+    color: #ffffff;
+    background: rgba(76, 175, 80, .20);
+    border-color: #7ee787;
+    transform: scale(1.08);
+}
+
+.back::after {
+    content: "العودة إلى الفضاء والفلك";
+
+    position: absolute;
+
+    top: 50%;
+    left: 52px;
+
+    transform:
+        translateY(-50%)
+        translateX(5px);
+
+    white-space: nowrap;
+
+    padding: 7px 12px;
+
+    border-radius: 10px;
+
+    background: #111827;
+    border: 1px solid rgba(126, 231, 135, .25);
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .25s ease;
+
+    pointer-events: none;
+}
+
+.back:hover::after {
+    opacity: 1;
+    visibility: visible;
+
+    transform:
+        translateY(-50%)
+        translateX(0);
+}
+
+.badge {
+    display: inline-block;
+
+    padding: 8px 18px;
+
+    border-radius: 30px;
+
+    background: rgba(76, 175, 80, 0.12);
+    border: 1px solid rgba(126, 231, 135, 0.35);
+
+    color: #7ee787;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+header h1 {
+    font-size: clamp(28px, 5vw, 44px);
+
+    font-weight: 800;
+
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+header h1 span {
+    color: #7ee787;
+}
+
+header p {
+    color: #b9c5d6;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary {
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    margin: 20px 0 30px;
+
+    backdrop-filter: blur(10px);
+}
+
+.summary h2 {
+    font-size: 21px;
+
+    margin-bottom: 12px;
+}
+
+.summary p {
+    color: #c4cedc;
+
+    line-height: 2;
+
+    font-size: 15px;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-box {
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+
+    border-radius: 18px;
+
+    padding: 18px 20px;
+
+    margin-bottom: 65px;
+}
+
+.progress-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #aeb5c8;
+}
+
+.progress-text {
+    color: #7ee787;
+}
+
+/* شريط التقدم */
+
+.progress-bar {
+    width: 100%;
+
+    height: 13px;
+
+    background: #151d2d;
+
+    border: 1px solid rgba(126, 231, 135, .14);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        inset 0 2px 5px rgba(0,0,0,.35),
+        0 5px 15px rgba(0,0,0,.12);
+}
+
+.progress-fill {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #237a35,
+        #4caf50,
+        #7ee787
+    );
+
+    box-shadow:
+        0 0 12px rgba(76,175,80,.45);
+
+    transition: width .5s ease;
+}
+
+/* ================= LESSONS ================= */
+
+.lessons {
+    position: relative;
+
+    width: 100%;
+
+    max-width: 720px;
+
+    margin: auto;
+}
+
+.lesson {
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    position: relative;
+
+    margin-bottom: 35px;
+}
+
+.lesson:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+/* ================= LESSON ICON ================= */
+
+.lesson-circle {
+    width: 90px;
+    height: 90px;
+
+    min-width: 90px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 34px;
+
+    position: relative;
+
+    background: linear-gradient(
+        145deg,
+        #252a40,
+        #111525
+    );
+
+    border: 3px solid #343a53;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.35),
+        inset 0 0 15px rgba(255,255,255,.03);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+    cursor: default;
+}
+
+/* الدرس المفتوح */
+
+.lesson.unlocked .lesson-circle {
+    background: linear-gradient(
+        145deg,
+        #4caf50,
+        #237a35
+    );
+
+    border-color: #7ee787;
+
+    box-shadow:
+        0 0 12px rgba(76,175,80,.55),
+        0 0 30px rgba(76,175,80,.20);
+
+    cursor: pointer;
+}
+
+/* تكبير جميع الأيقونات عند المرور */
+
+.lesson:hover .lesson-circle {
+    transform: scale(1.12);
+}
+
+/* تأثير الدرس المفتوح */
+
+.lesson.unlocked:hover .lesson-circle {
+    box-shadow:
+        0 0 18px rgba(76,175,80,.75),
+        0 0 40px rgba(76,175,80,.30);
+}
+
+/* القفل */
+
+.lock-icon {
+    position: absolute;
+
+    right: -4px;
+    bottom: -2px;
+
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111827;
+
+    border: 2px solid #343a53;
+
+    font-size: 13px;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.4);
+}
+
+/* ================= LESSON CONTENT ================= */
+
+.lesson-content {
+    flex: 1;
+
+    min-width: 0;
+
+    text-align: right;
+}
+
+.lesson:nth-child(even) .lesson-content {
+    text-align: left;
+}
+
+.lesson-number {
+    color: #7ee787;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 4px;
+}
+
+.lesson-title {
+    color: #fff;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+
+    line-height: 1.5;
+}
+
+.lesson-description {
+    color: #aeb5c8;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+/* محتوى الدرس المغلق */
+
+.lesson.locked .lesson-content {
+    opacity: .45;
+}
+
+/* الرابط */
+
+.lesson-link {
+    text-decoration: none;
+
+    color: inherit;
+
+    display: contents;
+}
+
+/* ================= FINAL TEST ================= */
+
+.final-test {
+    width: 100%;
+
+    max-width: 390px;
+
+    margin: 35px auto 0;
+
+    position: relative;
+
+    z-index: 4;
+}
+
+.test-card {
+    display: block;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    background: linear-gradient(
+        145deg,
+        rgba(76,175,80,.16),
+        rgba(20,22,40,.95)
+    );
+
+    border: 1px solid rgba(126,231,135,.30);
+
+    border-radius: 25px;
+
+    padding: 27px;
+
+    text-align: center;
+
+    transition: .25s ease;
+}
+
+.test-card.unlocked:hover {
+    transform: translateY(-5px);
+
+    border-color: #7ee787;
+
+    box-shadow:
+        0 15px 35px rgba(76,175,80,.15);
+}
+
+.test-icon {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+}
+
+.test-title {
+    font-size: 19px;
+
+    font-weight: 800;
+
+    margin-bottom: 7px;
+}
+
+.test-description {
+    color: #aeb5c8;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.test-button {
+    margin-top: 16px;
+
+    display: inline-block;
+
+    padding: 9px 20px;
+
+    border-radius: 12px;
+
+    background: #4caf50;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.test-card.locked {
+    opacity: .55;
+
+    cursor: not-allowed;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 650px) {
+
+    .container {
+        padding-top: 25px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .summary {
+        padding: 18px;
+
+        font-size: 12px;
+    }
+
+    .lesson {
+        gap: 16px;
+
+        margin-bottom: 28px;
+    }
+
+    .lesson-circle {
+        width: 78px;
+        height: 78px;
+
+        min-width: 78px;
+
+        font-size: 30px;
+    }
+
+    .lesson-title {
+        font-size: 16px;
+    }
+
+    .lesson-description {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .lesson {
+        gap: 13px;
+    }
+
+    .lesson-circle {
+        width: 74px;
+        height: 74px;
+
+        min-width: 74px;
+
+        font-size: 28px;
+    }
+
+    .lesson-title {
+        font-size: 15px;
+    }
+
+    .lesson-description {
+        font-size: 11px;
+    }
+
+    .lesson-number {
+        font-size: 10px;
+    }
+
+    .lock-icon {
+        width: 24px;
+        height: 24px;
+
+        font-size: 11px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="top-row">
+
+            <a class="back" href="space.html">
+                ←
+            </a>
+
+            <div class="badge">
+                🟢 المستوى الأول • مبتدئ
+            </div>
+
+        </div>
+
+        <h1>
+            الفضاء والفلك <span>1</span>
+        </h1>
+
+        <p class="subtitle">
+            ابدأ رحلتك في عالم الفضاء خطوة بخطوة
+        </p>
+
+    </header>
+
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div class="summary">
+
+        <h2>
+            📖 ماذا ستتعلم في هذا المستوى؟
+        </h2>
+
+        <p>
+            في هذا المستوى ستتعرف على أساسيات الفضاء والفلك بطريقة بسيطة وتدريجية.
+            ستتعلم ما هو الفضاء، وما هي الأجرام السماوية، وكيف تتكوّن المجموعة الشمسية،
+            وما هي النجوم والكواكب، مع اكتشاف معلومات أساسية تساعدك على فهم الكون من حولك.
+        </p>
+
+    </div>
+
+
+    <!-- ================= PROGRESS ================= -->
+
+    <div class="progress-box">
+
+        <div class="progress-header">
+
+            <span>
+                تقدم المستوى
+            </span>
+
+            <span
+                class="progress-text"
+                id="progressText"
+            >
+                0%
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                id="progressFill"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= LESSONS ================= -->
+
+    <div class="lessons">
+
+        <!-- الدرس 1 -->
+
+        <div
+            class="lesson unlocked"
+            id="lesson1"
+        >
+
+            <div class="lesson-circle">
+
+                🌌
+
+                <span
+                    class="lock-icon"
+                    id="lock1"
+                >
+                    🔒
+                </span>
+
+            </div>
+
+            <div class="lesson-content">
+
+                <div class="lesson-number">
+                    الدرس 01
+                </div>
+
+                <div class="lesson-title">
+                    ما هو الفضاء؟
+                </div>
+
+                <div class="lesson-description">
+                    تعرّف على الفضاء وماذا يوجد فيه وكيف يختلف عن الأرض.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- الدرس 2 -->
+
+        <div
+            class="lesson locked"
+            id="lesson2"
+        >
+
+            <div class="lesson-circle">
+
+                🪐
+
+                <span
+                    class="lock-icon"
+                    id="lock2"
+                >
+                    🔒
+                </span>
+
+            </div>
+
+            <div class="lesson-content">
+
+                <div class="lesson-number">
+                    الدرس 02
+                </div>
+
+                <div class="lesson-title">
+                    الأجرام السماوية
+                </div>
+
+                <div class="lesson-description">
+                    اكتشف الأنواع المختلفة للأجرام الموجودة في الكون.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- الدرس 3 -->
+
+        <div
+            class="lesson locked"
+            id="lesson3"
+        >
+
+            <div class="lesson-circle">
+
+                ☀️
+
+                <span
+                    class="lock-icon"
+                    id="lock3"
+                >
+                    🔒
+                </span>
+
+            </div>
+
+            <div class="lesson-content">
+
+                <div class="lesson-number">
+                    الدرس 03
+                </div>
+
+                <div class="lesson-title">
+                    المجموعة الشمسية
+                </div>
+
+                <div class="lesson-description">
+                    تعرّف على الشمس والكواكب والأجرام التي تدور حولها.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- الدرس 4 -->
+
+        <div
+            class="lesson locked"
+            id="lesson4"
+        >
+
+            <div class="lesson-circle">
+
+                ⭐
+                
+                <span
+                    class="lock-icon"
+                    id="lock4"
+                >
+                    🔒
+                </span>
+
+            </div>
+
+            <div class="lesson-content">
+
+                <div class="lesson-number">
+                    الدرس 04
+                </div>
+
+                <div class="lesson-title">
+                    النجوم
+                </div>
+
+                <div class="lesson-description">
+                    افهم ما هي النجوم وكيف تولد وتضيء في الفضاء.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- الدرس 5 -->
+
+        <div
+            class="lesson locked"
+            id="lesson5"
+        >
+
+            <div class="lesson-circle">
+
+                🌍
+
+                <span
+                    class="lock-icon"
+                    id="lock5"
+                >
+                    🔒
+                </span>
+
+            </div>
+
+            <div class="lesson-content">
+
+                <div class="lesson-number">
+                    الدرس 05
+                </div>
+
+                <div class="lesson-title">
+                    الكواكب
+                </div>
+
+                <div class="lesson-description">
+                    تعرّف على الكواكب وخصائصها وموقع الأرض بينها.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FINAL TEST ================= -->
+
+    <div class="final-test">
+
+        <a
+            href="#"
+            class="test-card locked"
+            id="finalTestCard"
+        >
+
+            <div class="test-icon">
+                🎯
+            </div>
+
+            <div class="test-title">
+                الاختبار النهائي
+            </div>
+
+            <div
+                class="test-description"
+                id="testDescription"
+            >
+                أكمل جميع الدروس لاختبار معلوماتك وفتح المستوى التالي 🔓
+            </div>
+
+            <div
+                class="test-button"
+                id="testButton"
+            >
+                🔒 الاختبار المغلق
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script src="progress.js"></script>
+
+<script>
+
+/* ================= MAJAL PROGRESS SYSTEM ================= */
+
+const FIELD = "space";
+const LEVEL = "beginner";
+const TOTAL_LESSONS = 5;
+
+
+/* ================= LESSON LINKS ================= */
+
+const lessonLinks = [
+   "under-development.html",
+    "space-lesson-02.html",
+    "space-lesson-03.html",
+    "space-lesson-04.html",
+    "space-lesson-05.html"
+];
+
+
+/* ================= UPDATE LESSONS ================= */
+
+let completed = 0;
+
+for (let i = 1; i <= TOTAL_LESSONS; i++) {
+
+    const lesson =
+        document.getElementById(`lesson${i}`);
+
+    if (!lesson) continue;
+
+
+    /* هل الدرس مكتمل؟ */
+
+    const isCompleted =
+        MajalProgress.isLessonCompleted(
+            FIELD,
+            LEVEL,
+            i
+        );
+
+
+    /* هل الدرس مفتوح؟ */
+
+    const isUnlocked =
+        MajalProgress.canOpenLesson(
+            FIELD,
+            LEVEL,
+            i
+        );
+
+
+    if (isCompleted) {
+        completed++;
+    }
+
+
+    /* ================= UNLOCK ================= */
+
+    if (isUnlocked) {
+
+        lesson.classList.remove("locked");
+
+        lesson.classList.add("unlocked");
+
+
+        /* حذف القفل */
+
+        const lock =
+            lesson.querySelector(".lock-icon");
+
+        if (lock) {
+            lock.remove();
+        }
+
+
+        /* ================= CREATE LINK ================= */
+
+        const circle =
+            lesson.querySelector(".lesson-circle");
+
+        const content =
+            lesson.querySelector(".lesson-content");
+
+
+        if (
+            circle &&
+            content &&
+            !lesson.querySelector("a")
+        ) {
+
+            const link =
+                document.createElement("a");
+
+            link.href =
+                lessonLinks[i - 1];
+
+            link.className =
+                "lesson-link";
+
+
+            lesson.innerHTML = "";
+
+
+            link.appendChild(circle);
+
+            link.appendChild(content);
+
+            lesson.appendChild(link);
+
+        }
+
+    }
+
+}
+
+
+/* ================= PROGRESS ================= */
+
+const progress =
+    MajalProgress.getLessonProgress(
+        FIELD,
+        LEVEL,
+        TOTAL_LESSONS
+    );
+
+
+document.getElementById(
+    "progressFill"
+).style.width =
+    progress + "%";
+
+
+document.getElementById(
+    "progressText"
+).textContent =
+    progress + "%";
+
+
+/* ================= FINAL TEST ================= */
+
+const finalTestCard =
+    document.getElementById(
+        "finalTestCard"
+    );
+
+
+const testButton =
+    document.getElementById(
+        "testButton"
+    );
+
+
+const testDescription =
+    document.getElementById(
+        "testDescription"
+    );
+
+
+const allLessonsCompleted =
+    MajalProgress.canOpenTest(
+        FIELD,
+        LEVEL,
+        TOTAL_LESSONS
+    );
+
+
+if (allLessonsCompleted) {
+
+    finalTestCard.href =
+        "space-beginner-test.html";
+
+
+    finalTestCard.classList.remove(
+        "locked"
+    );
+
+
+    finalTestCard.classList.add(
+        "unlocked"
+    );
+
+
+    testButton.textContent =
+        "🎯 ابدأ الاختبار";
+
+
+    testDescription.textContent =
+        "أكملت جميع دروس المستوى المبتدئ! اختبر معلوماتك وافتح المستوى التالي 🔓";
+
+} else {
+
+    finalTestCard.href = "#";
+
+
+    finalTestCard.classList.add(
+        "locked"
+    );
+
+
+    finalTestCard.classList.remove(
+        "unlocked"
+    );
+
+
+    testButton.textContent =
+        "🔒 الاختبار المغلق";
+
+
+    testDescription.textContent =
+        "أكمل جميع الدروس لاختبار معلوماتك وفتح المستوى التالي 🔓";
+
+}
+
+
+/* ================= PREVENT LOCKED CLICK ================= */
+
+finalTestCard.addEventListener(
+    "click",
+    function(event) {
+
+        if (!allLessonsCompleted) {
+
+            event.preventDefault();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
