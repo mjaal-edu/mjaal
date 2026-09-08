@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -55,16 +56,13 @@
 
     /* الفيديو */
     .video-container {
-  position: relative;
-  width:90%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 16px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
-  background: #000;
-  margin: 0 auto;
-}
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+    }
 
     .video-container iframe {
       position: absolute;
@@ -203,10 +201,10 @@
     <!-- الفيديو -->
     <section class="video-container">
 
-      <video controls playsinline preload="metadata">
-        <source src="intro.mp4" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
+      <iframe
+        src="https://www.canva.com/design/DAHURoyuJ4k/HjxyDK2yYvf86nEjkI6d0Q/view?embed"
+        allowfullscreen>
+      </iframe>
 
       <!-- الزر الحقيقي -->
       <a href="fields.html" class="start-button">
